@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from 'next/link';
 import { marope } from "@/app/fonts";
-import { useCv } from "@/hooks/useCv";
+
 
 export default function HeaderHome() {
     const navLinks = [
@@ -12,7 +12,7 @@ export default function HeaderHome() {
         { href: "#sobre", label: "Sobre" },
         { href: "#contato", label: "Contato" },
     ];
-    const { handleDownloadCv } = useCv();
+
     return (
         <header className="fixed w-full top-0 z-50 bg-[#060606] backdrop-blur-lg">
             <div className={`${marope.className} container mx-auto px-6 py-5 flex items-center justify-between`}>
@@ -31,16 +31,14 @@ export default function HeaderHome() {
                         </div>
                     ))}
                 </nav>
-                <button
-                    onClick={handleDownloadCv}
-                    className="bg-transparent hover:bg-[#2C2A2A] border-solid border-2 border-white text-white font-semibold py-2 px-5 rounded-full flex items-center gap-2 cursor-pointer "
-                    type="button"
-                    aria-label="Baixar Currículo"
-
-                >
-                    <Image src="/images/cv.svg" alt="CV" width={20} height={20} />
+                <a href="/cv/Curriculo_Guilherme_Araújo.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   download="Curriculo_Guilherme_Araujo.pdf"
+                   className="bg-transparent hover:bg-[#2C2A2A] border-solid border-2 border-white text-white font-semibold py-2 px-5 rounded-full flex items-center gap-2 cursor-pointer no-underline">
+                    <Image src="/images/cv.svg" alt="CV" width={16} height={16}/>
                     <span>Veja meu CV</span>
-                </button>
+                </a>
 
             </div>
         </header>

@@ -16,7 +16,7 @@ export default function HeroSection() {
 
                     <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-4">
 
-                        <a href="https://res.cloudinary.com/dfn2uzjqw/raw/upload/portfolio_cv.pdf"
+                        <a href="/cv/Curriculo_Guilherme_Araújo.pdf"
                            target="_blank"
                            rel="noopener noreferrer"
                            download="Curriculo_Guilherme_Araujo.pdf"

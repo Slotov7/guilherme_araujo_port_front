@@ -68,15 +68,6 @@ export const ContactAPI = {
 };
 
 
-export const CvAPI = {
-    uploadCv: (formData: FormData) => {
-        const token = localStorage.getItem("authToken");
-
-        return axios.post("http://localhost:8080/api/cv/upload", formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}`
-            }
-        });
-    }
-};
+// export const CvAPI = {
+//     uploadCv: (formData: FormData): Promise<string> => requests.post("/cv/upload", formData),
+// };
