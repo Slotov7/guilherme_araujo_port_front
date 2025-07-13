@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 import {useRouter} from "next/navigation";
 
 interface  AuthContext {
@@ -13,15 +13,13 @@ interface  AuthContext {
 const AuthContext = createContext<AuthContext | undefined>(undefined);
 
 export function AuthProvider({children} : { children: ReactNode }) {
-    const [token, setToken] = useState<string | null>(null);
     const router = useRouter();
-
-    useEffect(() => {
-        const storedToken = localStorage.getItem('authToken');
-        if (storedToken) {
-            setToken(storedToken);
+    const [token, setToken] = useState<string | null>(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('authToken');
         }
-    }, []);
+        return null;
+    });
 
     const login = (token: string) => {
         setToken(token);

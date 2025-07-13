@@ -4,4 +4,5 @@ export interface Project{
     description: string;
     imageUrl: string;
     repoUrl: string;
+    technologies: string;
 }
