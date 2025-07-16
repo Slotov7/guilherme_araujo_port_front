@@ -14,7 +14,7 @@ export default function HeroSection() {
                         <p className="text-2xl m-0 text-left max-lg:text-center">Aqui você encontra meus projetos, habilidades e formas de contato.</p>
                     </div>
 
-                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-4">
+                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt max-lg:text-center ">
 
                         <a href="/cv/Curriculo_Guilherme_Araújo.pdf"
                            target="_blank"
@@ -33,9 +33,8 @@ export default function HeroSection() {
                     </div>
                 </div>
             </div>
-            <div className="h-full  box-border items-center justify-center flex">
+            <div className="h-full box-border items-center justify-center max-lg:hidden flex">
                 <Image src="/images/foto.png" alt="Foto de Guilherme Araújo" width={550} height={550} className="shadow-lg shadow-[#2C2A2A] aspect-square rounded-full"/>
-
             </div>
         </section>
     );
