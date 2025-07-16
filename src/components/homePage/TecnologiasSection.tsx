@@ -58,8 +58,8 @@ const technologies = {
 
 function TechIcon({ Icon, name }: { Icon: React.ElementType, name: string }) {
     return (
-        <div className="flex flex-col items-center justify-center gap-2 text-center w-24" title={name}>
-            <Icon className="w-30 h-30 transition-transform duration-300 hover:scale-110" />
+        <div className="flex flex-col items-center justify-center gap-2 text-center" title={name}>
+            <Icon className="w-20 h-20 transition-transform duration-300 hover:scale-110 md:w-24 md:h-24 lg:w-30 lg:h-30" />
         </div>
     );
 }
@@ -72,7 +72,7 @@ export default function TecnologiasSection() {
                 <h2 className={`${spaceGrotesk.className} text-4xl font-bold text-center mb-8 text-white`}>Tecnologias</h2>
 
 
-                <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+                <div className="grid grid-cols-1  gap-8 max-w-4xl mx-auto  ">
                     {/* Linguagens e Frameworks */}
                     <div className="bg-[#1C1C1C] pb-8 rounded-2xl shadow-lg">
                         <h3 className="text-2xl font-semibold mb-8 text-center text-gray-200">Linguagens e Frameworks</h3>
@@ -83,14 +83,14 @@ export default function TecnologiasSection() {
                     {/* Banco de Dados e ORMs */}
                     <div className="bg-[#1C1C1C] pb-8 rounded-2xl shadow-lg">
                         <h3 className="text-2xl font-semibold mb-8 text-center text-gray-200">Banco de Dados e ORMs</h3>
-                        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 space-x-10">
+                        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 space-x-2">
                             {technologies.databases.map(tech => <TechIcon key={tech.name} {...tech} />)}
                         </div>
                     </div>
                     {/* Ferramentas e IDEs */}
                     <div className="bg-[#1C1C1C] pb-8 rounded-2xl shadow-lg">
                         <h3 className="text-2xl font-semibold mb-8 text-center text-gray-200">Ferramentas e IDEs</h3>
-                        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 space-x-10">
+                        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 space-x-2">
                             {technologies.tools.map(tech => <TechIcon key={tech.name} {...tech} />)}
                         </div>
                     </div>

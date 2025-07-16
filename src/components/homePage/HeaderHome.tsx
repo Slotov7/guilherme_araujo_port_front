@@ -16,7 +16,7 @@ export default function HeaderHome() {
     return (
         <header className="fixed w-full top-0 z-50 bg-[#060606] backdrop-blur-lg">
             <div className={`${marope.className} container mx-auto px-6 py-5 flex items-center justify-between`}>
-                <a href="/">
+                <a href="#hero">
                     <Image src="/images/logo.svg" alt="Logo Guilherme Araújo" width={150} height={40} priority />
                 </a>
                 <nav className="hidden md:flex items-center gap-4">

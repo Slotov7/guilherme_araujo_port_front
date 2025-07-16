@@ -87,7 +87,7 @@ export default async function ProjectsSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project) => (
                         <div key={project.id} className="bg-[#1C1C1C] rounded-2xl shadow-lg overflow-hidden group flex flex-col">
-                            <div className="relative w-full h-56">
+                            <div className="relative w-full h-full aspect-video">
                                 <Image
                                     src={project.imageUrl || '/images/default-project.png'}
                                     alt={`Imagem do projeto ${project.name}`}

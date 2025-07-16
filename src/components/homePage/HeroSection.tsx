@@ -4,14 +4,14 @@ import Link from "next/link";
 
 export default function HeroSection() {
     return (
-        <section className=" grid grid-cols-1 md:grid-cols-2 container mx-auto px-6 items-center gap-8 h-screen">
-            <div className={`${spaceGrotesk.className} container px-6 py-0 flex flex-col items-start justify-center text-center h-full  box-border`}>
-                <div className="flex flex-col items-start justify-center h-full gap-1 pr-36" >
-                    <h1 className="text-6xl md:text-7xl font-bold text-left w-full m-0 text-nowrap">Guilherme Araújo</h1>
-                    <div className="mb-4">
-                        <p className="text-2xl m-0 text-left ">Sou desenvolvedor backend e designer UI/UX.</p>
-                        <p className="text-2xl m-0 text-left ">Crio soluções completas: do código robusto à interface intuitiva.</p>
-                        <p className="text-2xl m-0 text-left ">Aqui você encontra meus projetos, habilidades e formas de contato.</p>
+        <section id="hero" className="grid grid-cols-2 max-lg:grid-cols-1 container mx-auto px-6 items-center gap-8 h-screen">
+            <div className={`${spaceGrotesk.className} container px-6 py-0 flex flex-col items-start justify-center text-center h-full box-border`}>
+                <div className="flex flex-col items-start justify-center h-full gap-4" >
+                    <h1 className="text-6xl md:text-7xl font-bold text-left w-full m-0 max-lg:text-center max-sm:text-6xl">Guilherme Araújo</h1>
+                    <div className="flex flex-col gap-1 max-lg:gap-2">
+                        <p className="text-2xl m-0 text-left max-lg:text-center">Sou desenvolvedor backend e designer UI/UX.</p>
+                        <p className="text-2xl m-0 text-left max-lg:text-center">Crio soluções completas: do código robusto à interface intuitiva.</p>
+                        <p className="text-2xl m-0 text-left max-lg:text-center">Aqui você encontra meus projetos, habilidades e formas de contato.</p>
                     </div>
 
                     <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-4">
