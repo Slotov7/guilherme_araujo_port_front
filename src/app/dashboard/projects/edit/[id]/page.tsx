@@ -7,7 +7,13 @@ import SuccessModal from "@/components/dashboardPage/SuccessModal";
 import {useProjectForm} from "@/hooks/useProjectForm";
 import ProjectForm from "@/components/forms/ProjectForm";
 
-export default function EditProjectPage({ params }: { params: { id: string } }) {
+interface PageProps {
+    params: {
+        id: string;
+    };
+}
+
+export default function EditProjectPage({ params }: PageProps) {
     if (!params.id || isNaN(Number(params.id))) {
         return (
             <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-[#060606] to-[#2C2A2A] text-white">
