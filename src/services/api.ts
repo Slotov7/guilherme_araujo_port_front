@@ -61,10 +61,11 @@ interface ContactFormData {
     phone: string;
     email: string;
     message: string;
+    recaptchaResponse: string;
 }
 
 export const ContactAPI = {
-    sendContactEmail: (data: ContactFormData): Promise<void> => requests.post("/contact", data),
+    sendContactEmail: (data:ContactFormData): Promise<void> => requests.post("/contact", data),
 };
 
 

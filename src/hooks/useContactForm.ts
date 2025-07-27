@@ -1,8 +1,13 @@
-// src/hooks/useContactForm.ts
 "use client";
 
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { ContactAPI } from '@/services/api';
+
+declare global {
+    interface Window {
+        grecaptcha: any;
+    }
+}
 
 export function useContactForm() {
     const [formData, setFormData] = useState({
@@ -25,11 +30,15 @@ export function useContactForm() {
         e.preventDefault();
         setStatus('loading');
         setResponseMessage('');
+        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
         try {
 
-            // Adicionaremos reCAPTCHA aqui se necessário
-            await ContactAPI.sendContactEmail(formData);
+            if (!window.grecaptcha) {
+                throw new Error("reCAPTCHA não carregado");
+            }
+            const token = await window.grecaptcha.execute(siteKey, { action: "contact" });
+            await ContactAPI.sendContactEmail({ ...formData, recaptchaResponse: token });
 
             setStatus('success');
             setResponseMessage('Mensagem enviada com sucesso! Obrigado.');
