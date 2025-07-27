@@ -11,6 +11,20 @@ const nextConfig: NextConfig = {
             },
         ],
     },
+    async headers() {
+        return [
+            {
+                source: "/(.*)",
+                headers: [
+                    {
+                        key: "Content-Security-Policy",
+                        value:
+                            "frame-ancestors 'self' https://www.google.com https://www.recaptcha.net;",
+                    },
+                ],
+            },
+        ];
+    },
 };
 
 export default nextConfig;
