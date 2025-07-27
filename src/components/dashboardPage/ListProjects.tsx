@@ -8,9 +8,6 @@ interface ListProjectsProps {
     projects: Project[];
     onEdit: (id: number) => void;
     onDelete: (id: number, name: string) => void;
-    totalPages: number;
-    currentPage: number;
-    onPageChange: (page: number) => void;
 }
 
 export default function ListProjects({

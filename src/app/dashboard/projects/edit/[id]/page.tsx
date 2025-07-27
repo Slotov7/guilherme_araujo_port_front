@@ -6,15 +6,15 @@ import Header from "@/components/Header";
 import SuccessModal from "@/components/dashboardPage/SuccessModal";
 import {useProjectForm} from "@/hooks/useProjectForm";
 import ProjectForm from "@/components/forms/ProjectForm";
+import { useParams } from "next/navigation";
 
-interface PageProps {
-    params: {
-        id: string;
-    };
-}
 
-export default function EditProjectPage({ params }: PageProps) {
-    if (!params.id || isNaN(Number(params.id))) {
+
+export default function EditProjectPage() {
+    const params = useParams();
+    const id = params?.id;
+
+    if (!id || isNaN(Number(id))) {
         return (
             <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-[#060606] to-[#2C2A2A] text-white">
                 ID de projeto inválido
@@ -22,7 +22,7 @@ export default function EditProjectPage({ params }: PageProps) {
         );
     }
 
-    const formProps = useProjectForm(Number(params.id));
+    const formProps = useProjectForm(Number(id));
 
     if (formProps.pageLoading) {
         return (
