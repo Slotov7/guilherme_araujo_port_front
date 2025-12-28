@@ -49,9 +49,20 @@ export default async function ProjectsSection() {
                 >
                   {project.name}
                 </h3>
-                <p className="text-gray-400 mb-4 flex-grow line-clamp-3">
+                <p className="text-gray-400 mb-2 flex-grow line-clamp-3">
                   {project.description}
                 </p>
+
+                {/* Botão Ver mais */}
+                <button
+                  className="text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors mb-4 text-left"
+                  onClick={() => {
+                    // Aqui você pode implementar um modal ou expandir o texto
+                    alert(project.description);
+                  }}
+                >
+                  Ver mais →
+                </button>
 
                 <div className="flex items-center gap-3 mb-6">
                   {project.technologies &&
