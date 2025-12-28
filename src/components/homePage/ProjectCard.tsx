@@ -141,30 +141,31 @@ export function ProjectCard({ project }: ProjectCardProps) {
           >
             {project.name}
           </h3>
-          <p className="text-gray-400 mb-2 flex-grow line-clamp-3">
+          <p className="text-gray-400 mb-3 flex-grow line-clamp-3">
             {project.description}
           </p>
 
-          {/* Botão Ver mais melhorado */}
-          <button
-            className="inline-flex items-center gap-1 text-blue-400 text-sm font-medium hover:text-blue-300 transition-all mb-4 group"
-            onClick={() => setIsModalOpen(true)}
-          >
-            <span>Ver mais</span>
-            <svg
-              className="w-4 h-4 transition-transform group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="mb-4 text-right">
+            <button
+              className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors inline-flex items-center gap-1 group"
+              onClick={() => setIsModalOpen(true)}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+              <span>Ver mais detalhes</span>
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
 
           <div className="flex items-center gap-3 mb-6">
             {project.technologies &&
