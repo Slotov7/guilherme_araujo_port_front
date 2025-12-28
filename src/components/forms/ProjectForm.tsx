@@ -3,21 +3,20 @@ import {useRouter} from "next/navigation";
 import {marope} from "@/app/fonts";
 import FormButton from "@/components/FormButton";
 import TechSelect from './TechSelect';
-import { Technology } from '@/types/project';
+import { Project, Technology } from '@/types/project';
 
 interface ProjectFormProps {
     isEditMode: boolean;
-    // ATENÇÃO: technologies agora é Technology[] (Array de objetos)
-    formData: { name: string; description: string; repoUrl: string; technologies: Technology[]; };
+    // CORREÇÃO CRÍTICA AQUI: Usamos a interface 'Project' para os tipos baterem certo
+    formData: Project;
     previewUrl: string | null;
     imageFile: File | null;
     loading: boolean;
     error: string | null;
-    handleChange: (e: any) => void;
-    handleImageChange: (e: any) => void;
-    // Nova prop para lidar com a mudança das tecnologias
+    handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleTechChange: (techs: Technology[]) => void;
-    handleSubmit: (e: any) => void;
+    handleSubmit: (e: React.FormEvent) => void;
     formatFileSize: (bytes: number) => string;
     MAX_FILE_SIZE: number;
 }
@@ -39,7 +38,6 @@ export default function ProjectForm({
         <div className="bg-[#1a1a1a] rounded-lg shadow-2xl p-8 flex-shrink-0">
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
                     <div className="flex flex-col justify-center">
                         <div
                             className="w-[500px] h-[480px] bg-gray-800 rounded-lg aspect-[4/3] flex items-center justify-center overflow-hidden border-2 border-gray-500">
@@ -62,6 +60,7 @@ export default function ProjectForm({
                         </div>
                     </div>
 
+                    {/* LADO DIREITO: CAMPOS DO FORMULÁRIO */}
                     <div className={`${marope.className} flex flex-col justify-between pr-8`}>
                         <div className="space-y-4">
                             <div>
@@ -73,7 +72,7 @@ export default function ProjectForm({
                                     name="name"
                                     required={true}
                                     type="text"
-                                    value={formData.name}
+                                    value={formData.name || ''}
                                     onChange={handleChange}
                                     className={inputClassName}
                                     placeholder="Nome do projeto"
@@ -88,7 +87,7 @@ export default function ProjectForm({
                                     id="description"
                                     name="description"
                                     rows={4}
-                                    value={formData.description}
+                                    value={formData.description || ''}
                                     onChange={handleChange}
                                     className={`${inputClassName} resize-none`}
                                     placeholder="Descrição do projeto"
@@ -103,7 +102,7 @@ export default function ProjectForm({
                                     id="repoUrl"
                                     name="repoUrl"
                                     type="url"
-                                    value={formData.repoUrl}
+                                    value={formData.repoUrl || ''}
                                     onChange={handleChange}
                                     className={inputClassName}
                                     placeholder="https://github.com/user/repo"
@@ -119,7 +118,6 @@ export default function ProjectForm({
                                         Escolher arquivo
                                     </label>
                                     <div className="flex flex-col">
-
                                     <span className="text-gray-400 text-sm truncate">
                                     {imageFile ? imageFile.name : 'Nenhum arquivo selecionado'}
                                     </span>
@@ -127,7 +125,6 @@ export default function ProjectForm({
                                             <span className="text-gray-500 text-xs">
                                             {formatFileSize(imageFile.size)}
                                             </span>
-
                                         )}
                                     </div>
                                 </div>
@@ -146,10 +143,10 @@ export default function ProjectForm({
                                 />
                             </div>
 
-                            {/* NOVO COMPONENTE TECH SELECT */}
+                            {/* COMPONENTE DE TECNOLOGIAS INTELIGENTE */}
                             <div>
                                 <TechSelect
-                                    selectedTechs={formData.technologies}
+                                    selectedTechs={formData.technologies || []}
                                     onChange={handleTechChange}
                                 />
                             </div>

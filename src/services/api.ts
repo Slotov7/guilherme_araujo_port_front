@@ -68,6 +68,12 @@ export const ContactAPI = {
     sendContactEmail: (data:ContactFormData): Promise<void> => requests.post("/contact", data),
 };
 
+const api = {
+    Projects: ProjectsAPI,
+    Auth: AuthAPI,
+    Contact: ContactAPI,
+};
+export default api;
 
 // export const CvAPI = {
 //     uploadCv: (formData: FormData): Promise<string> => requests.post("/cv/upload", formData),
