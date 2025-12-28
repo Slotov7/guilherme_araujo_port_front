@@ -58,6 +58,7 @@ export default function TechSelect({ selectedTechs, onChange }: TechSelectProps)
             <div className="flex flex-wrap gap-2 mb-2 min-h-[30px]">
                 {selectedTechs.map(tech => (
                     <span key={tech.id} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        <img src={tech.imageUrl} alt="" className="w-4 h-4 mr-1" />
                         {tech.name}
                         <button
                             type="button"
