@@ -17,21 +17,29 @@ export default function TechSelect({
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Carregar todas as tecnologias ao montar
+  // Carregar todas as tecnologias ao abrir o popover
   useEffect(() => {
+    if (!isOpen) return;
+
     const loadTechs = async () => {
+      console.log("🔍 Carregando tecnologias...");
       setLoading(true);
       try {
         const data = await api.Technologies.search("");
+        console.log("✅ Tecnologias carregadas:", data);
         setAllOptions(data);
       } catch (error) {
-        console.error("Erro ao buscar tecnologias", error);
+        console.error("❌ Erro ao buscar tecnologias:", error);
       } finally {
         setLoading(false);
       }
     };
-    loadTechs();
-  }, []);
+
+    // Só carregar se ainda não tiver dados
+    if (allOptions.length === 0) {
+      loadTechs();
+    }
+  }, [isOpen]);
 
   // Buscar tecnologias conforme digita
   useEffect(() => {
@@ -40,12 +48,14 @@ export default function TechSelect({
     }
 
     const timer = setTimeout(async () => {
+      console.log("🔍 Buscando por:", search);
       setLoading(true);
       try {
         const data = await api.Technologies.search(search);
+        console.log("✅ Resultados:", data);
         setAllOptions(data);
       } catch (error) {
-        console.error("Erro ao buscar tecnologias", error);
+        console.error("❌ Erro ao buscar:", error);
       } finally {
         setLoading(false);
       }
