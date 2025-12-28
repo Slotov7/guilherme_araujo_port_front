@@ -147,7 +147,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
           <div className="mb-4 text-right">
             <button
-              className="text-gray-400 hover:text-gray-300 text-sm underline transition-colors"
+              className="text-gray-400 hover:text-gray-300 text-sm underline transition-colors bg-transparent border-0 cursor-pointer"
               onClick={() => setIsModalOpen(true)}
             >
               Ver mais detalhes
