@@ -14,7 +14,7 @@ export default function HeroSection() {
                         <p className="text-2xl m-0 text-left max-lg:text-center">Aqui você encontra meus projetos, habilidades e formas de contato.</p>
                     </div>
 
-                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt max-lg:text-center sm:text-center ">
+                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt max-lg:text-center max-sm:text-center ">
 
                         <a href="/cv/Curriculo_Guilherme_Araújo.pdf"
                            target="_blank"

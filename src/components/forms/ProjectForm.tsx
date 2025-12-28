@@ -2,28 +2,29 @@
 import {useRouter} from "next/navigation";
 import {marope} from "@/app/fonts";
 import FormButton from "@/components/FormButton";
-
-
-
+import TechSelect from './TechSelect';
+import { Technology } from '@/types/project';
 
 interface ProjectFormProps {
     isEditMode: boolean;
-    formData: { name: string; description: string; repoUrl: string; technologies: string; };
+    // ATENÇÃO: technologies agora é Technology[] (Array de objetos)
+    formData: { name: string; description: string; repoUrl: string; technologies: Technology[]; };
     previewUrl: string | null;
     imageFile: File | null;
     loading: boolean;
     error: string | null;
     handleChange: (e: any) => void;
     handleImageChange: (e: any) => void;
+    // Nova prop para lidar com a mudança das tecnologias
+    handleTechChange: (techs: Technology[]) => void;
     handleSubmit: (e: any) => void;
     formatFileSize: (bytes: number) => string;
     MAX_FILE_SIZE: number;
 }
 
-
 export default function ProjectForm({
                                         isEditMode, formData, previewUrl, imageFile, loading, error,
-                                        handleChange, handleImageChange, handleSubmit, formatFileSize, MAX_FILE_SIZE,
+                                        handleChange, handleImageChange, handleTechChange, handleSubmit, formatFileSize, MAX_FILE_SIZE,
                                     }: ProjectFormProps) {
 
     const router = useRouter();
@@ -35,8 +36,6 @@ export default function ProjectForm({
     }
 
     return (
-
-
         <div className="bg-[#1a1a1a] rounded-lg shadow-2xl p-8 flex-shrink-0">
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -146,20 +145,15 @@ export default function ProjectForm({
                                     className="hidden"
                                 />
                             </div>
+
+                            {/* NOVO COMPONENTE TECH SELECT */}
                             <div>
-                                <label htmlFor="technologies"
-                                       className="block text-sm font-medium text-gray-300 mb-1">
-                                    Tecnologias (separadas por vírgula)
-                                </label>
-                                <input
-                                    id="technologies"
-                                    type="text"
-                                    value={formData.technologies}
-                                    onChange={handleChange}
-                                    className={inputClassName}
-                                    placeholder="react,nextjs,java,spring"
+                                <TechSelect
+                                    selectedTechs={formData.technologies}
+                                    onChange={handleTechChange}
                                 />
                             </div>
+
                             {error && (
                                 <div
                                     className="text-red-400 text-sm bg-red-900 bg-opacity-20 p-3 rounded-md border border-red-500">

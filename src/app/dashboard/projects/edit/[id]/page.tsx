@@ -1,47 +1,43 @@
 "use client";
 
-import {spaceGrotesk } from "@/app/fonts";
+import { spaceGrotesk } from "@/app/fonts";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import SuccessModal from "@/components/dashboardPage/SuccessModal";
-import {useProjectForm} from "@/hooks/useProjectForm";
+import { useProjectForm } from "@/hooks/useProjectForm";
 import ProjectForm from "@/components/forms/ProjectForm";
-import { useParams } from "next/navigation";
-
-
 
 export default function EditProjectPage() {
-    const params = useParams();
-    const id = params?.id;
-
-    if (!id || isNaN(Number(id))) {
-        return (
-            <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-[#060606] to-[#2C2A2A] text-white">
-                ID de projeto inválido
-            </div>
-        );
-    }
-
-    const formProps = useProjectForm(Number(id));
+    const formProps = useProjectForm();
 
     if (formProps.pageLoading) {
         return (
             <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-[#060606] to-[#2C2A2A] text-white">
-                A carregar dados do projeto...
+                <div className="flex flex-col items-center gap-4">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+                    <span className="text-lg">A carregar dados do projeto...</span>
+                </div>
+            </div>
+        );
+    }
+
+    if (formProps.error && !formProps.formData.id) {
+        return (
+            <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-[#060606] to-[#2C2A2A] text-red-400">
+                {formProps.error}
             </div>
         );
     }
 
     return (
-        <div
-            className="h-screen w-screen flex flex-col bg-gradient-to-b from-[#060606] to-[#2C2A2A] overflow-hidden">
+        <div className="h-screen w-screen flex flex-col bg-gradient-to-b from-[#060606] to-[#2C2A2A] overflow-hidden">
             <Header/>
 
             <main className="flex-1 overflow-y-auto overflow-x-hidden px-4 py-4">
                 <div className="max-w-6xl mx-auto h-full flex flex-col justify-center">
                     <div className="text-center mb-6">
                         <h1 className={`${spaceGrotesk.className} text-4xl font-bold text-white`}>
-                                EDITAR PROJETO
+                            EDITAR PROJETO
                         </h1>
                     </div>
 
@@ -53,9 +49,9 @@ export default function EditProjectPage() {
 
             <SuccessModal
                 isOpen={formProps.showSuccessModal}
-                message="Projeto editado com sucesso! Você será redirecionado para o dashboard."
+                message="Projeto editado com sucesso! Você será redirecionado."
                 onClose={formProps.handleCloseSuccessModal}
             />
-            </div>
-        );
-    }
+        </div>
+    );
+}
