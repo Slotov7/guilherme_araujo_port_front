@@ -33,16 +33,11 @@ const requests = {
 
 export const ProjectsAPI = {
     getProjects: (): Promise<Project[]> => requests.get("/projects"),
-
     getProjectById: (id: number): Promise<Project> => requests.get(`/projects/${id}`),
-
     createProject: (project: FormData): Promise<Project> => requests.post("/projects", project),
-
     updateProject: (id: number, project: FormData): Promise<Project> => requests.put(`/projects/${id}`, project),
-
     deleteProject: (id: number): Promise<void> => requests.delete(`/projects/${id}`),
 };
-
 
 interface LoginCredentials {
     username: string;
@@ -64,7 +59,7 @@ interface ContactFormData {
 }
 
 export const ContactAPI = {
-    sendContactEmail: (data:ContactFormData): Promise<void> => requests.post("/contact", data),
+    sendContactEmail: (data: ContactFormData): Promise<void> => requests.post("/contact", data),
 };
 
 export const TechnologiesAPI = {
@@ -77,4 +72,5 @@ const api = {
     Contact: ContactAPI,
     Technologies: TechnologiesAPI,
 };
+
 export default api;
