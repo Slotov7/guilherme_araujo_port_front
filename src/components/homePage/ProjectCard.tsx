@@ -19,19 +19,20 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black bg-opacity-75"
+        className="absolute inset-0 bg-black bg-opacity-75 backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Modal */}
       <div className="relative bg-[#1C1C1C] rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        {/* Botão fechar */}
+        {/* Botão fechar melhorado */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10"
+          className="absolute top-6 right-6 z-10 bg-gray-800 hover:bg-gray-700 text-white rounded-full p-2 transition-all duration-200 hover:scale-110 shadow-lg"
+          aria-label="Fechar modal"
         >
           <svg
-            className="w-8 h-8"
+            className="w-6 h-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -144,12 +145,25 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {project.description}
           </p>
 
-          {/* Botão Ver mais */}
+          {/* Botão Ver mais melhorado */}
           <button
-            className="text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors mb-4 text-left"
+            className="inline-flex items-center gap-1 text-blue-400 text-sm font-medium hover:text-blue-300 transition-all mb-4 group"
             onClick={() => setIsModalOpen(true)}
           >
-            Ver mais →
+            <span>Ver mais</span>
+            <svg
+              className="w-4 h-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </button>
 
           <div className="flex items-center gap-3 mb-6">
