@@ -1,4 +1,4 @@
-import { Project } from "@/types/project";
+import { Project, Technology } from "@/types/project";
 import axios, { AxiosResponse } from "axios";
 
 const instance = axios.create({
@@ -12,7 +12,6 @@ instance.interceptors.request.use(
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
-        // Sua lógica para FormData, que está ótima.
         if (config.data instanceof FormData) {
             delete config.headers['Content-Type'];
         }
@@ -68,13 +67,14 @@ export const ContactAPI = {
     sendContactEmail: (data:ContactFormData): Promise<void> => requests.post("/contact", data),
 };
 
+export const TechnologiesAPI = {
+    search: (query: string): Promise<Technology[]> => requests.get(`/technologies?query=${query}`),
+};
+
 const api = {
     Projects: ProjectsAPI,
     Auth: AuthAPI,
     Contact: ContactAPI,
+    Technologies: TechnologiesAPI,
 };
 export default api;
-
-// export const CvAPI = {
-//     uploadCv: (formData: FormData): Promise<string> => requests.post("/cv/upload", formData),
-// };
