@@ -147,23 +147,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
           <div className="mb-4 text-right">
             <button
-              className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors inline-flex items-center gap-1 group"
+              className="text-gray-400 hover:text-gray-300 text-sm underline transition-colors"
               onClick={() => setIsModalOpen(true)}
             >
-              <span>Ver mais detalhes</span>
-              <svg
-                className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              Ver mais detalhes
             </button>
           </div>
 
