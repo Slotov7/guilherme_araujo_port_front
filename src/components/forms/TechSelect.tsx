@@ -16,18 +16,31 @@ export default function TechSelect({
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Carregar tecnologias iniciais ao montar
+  useEffect(() => {
+    const loadInitialTechs = async () => {
+      setLoading(true);
+      try {
+        const data = await api.Technologies.search("");
+        setOptions(data);
+      } catch (error) {
+        console.error("Erro ao buscar tecnologias", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadInitialTechs();
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(async () => {
-      if (searchTerm.trim().length === 0) {
-        setOptions([]);
-        return;
-      }
-
       setLoading(true);
       try {
         const data = await api.Technologies.search(searchTerm);
         setOptions(data);
-        setIsOpen(true);
+        if (data.length > 0) {
+          setIsOpen(true);
+        }
       } catch (error) {
         console.error("Erro ao buscar tecnologias", error);
       } finally {
@@ -98,7 +111,7 @@ export default function TechSelect({
               ? "Pesquisar tecnologia (ex: Java, React)..."
               : ""
           }
-          className="bg-transparent border-none outline-none text-lg text-white flex-grow min-w-[150px] placeholder-gray-500 h-8"
+          className="bg-transparent border-none outline-none text-lg text-white flex-grow min-w-[150px] placeholder-gray-400 h-8"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onFocus={() => {
